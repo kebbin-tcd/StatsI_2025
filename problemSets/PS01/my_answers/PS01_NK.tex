@@ -1,0 +1,228 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+\title{Problem Set 1}
+\date{Due: October 9, 2025}
+\author{Applied Stats/Quant Methods 1 \\ Nour Kebbi, Student ID 23350337 \\ Answer Sheet}
+
+\begin{document}
+	\maketitle
+	
+	\section*{Question 1: Education}
+
+
+	Part 1 - 90\% confidence interval for the average student IQ in the school: \\
+\vspace{.5cm}
+\begin{description}
+\item Code in R:
+\lstinputlisting[language=R, firstline=36, lastline=46]{PS01_NK.R}  
+
+\item Execution answer: The confidence interval is 
+
+\item Explanation: Since the length of y is 25, it is less than 30. Hence, it is not a normal distribution. It should be t-distribution. I started with calculating the mean, then the standard deviation, then the standard error using the standard deviation. Then I calculated the t-score and using the t-score, I calculated the upper and lower interval to get the confidence interval.
+\end{description}
+\vspace{1cm}
+
+\newpage
+
+Part 2 - Conducting the appropriate hypothesis test with $\alpha=0.05$
+\vspace{.5cm}
+\begin{description}
+\item Code in R:
+\lstinputlisting[language=R, firstline=49, lastline=53]{PS01_NK.R}  
+
+\item Execution answer: The p value is 0.2784617 which is >0.05 (alpha) hence we fail to reject Null hypothesis - this means that there is not enough evidence to conclude that the average IQ in this school is higher than 100.
+
+
+\item Explanation: I set the null hypothesis is equal to 100 while the alternative hypothesis is that the average IQ is greater than 100. I used the regular formula for the test statistic and used it to calculate the p value with degrees of freedom length(y) - 1. This is 1 sided test because the alternative is that it is higher and not "not equal to".
+\end{description}
+\vspace{1cm}
+
+
+
+\newpage
+
+	\section*{Question 2: Political Economy}
+
+	Part 1 - Correlation plots between Y, X1, X2, and X3: 
+\vspace{.3cm}
+\begin{description}
+	\item Plot 1 - Y with X1 - Personal income versus shelter/housing expenditure assistance:
+	\item Code in R:
+	\lstinputlisting[language=R, firstline=64, lastline=70]{PS01_NK.R}  
+	
+	\item Explanation: The correlation is postive and upwards but not very strong, but it looks linear. This is a scatter plot that shows the relationship between the personal income and the shelter/housing expenditure assistance. Below is the plot:
+\end{description}
+
+\begin{figure}[h!]\centering
+	\caption{\footnotesize Y with X1:}
+	\label{fig:plot_1}
+	\includegraphics[width=.65\textwidth]{Y_X1.png}
+\end{figure}
+\newpage
+\begin{description}
+	\item Plot 2 - Y with X2- Per Capita Expenditure on Shelters/Housing Assistance versus Number of Financially Secure residents:
+	\item Code in R:
+	\lstinputlisting[language=R, firstline=72, lastline=78]{PS01_NK.R}  
+	
+	\item Explanation: The correlation is downward then upwards, seems like it is weak, which is non-linear. This is a scatter plot that shows the relationship between the per Capita Expenditure on Shelters/Housing Assistance and Number of Financially Secure residents. Below is the plot:
+\end{description}
+\begin{figure}[h!]\centering
+	\caption{\footnotesize Y with X2:}
+	\label{fig:plot_2}
+	\includegraphics[width=.65\textwidth]{Y_X2.png}
+\end{figure}
+\newpage
+\begin{description}
+	\item Plot 3 - Y with X3- Per Capita Expenditure on Shelters/Housing Assistance versus Number of people per thousand residing in urban areas in state:
+	\item Code in R:
+	\lstinputlisting[language=R, firstline=80, lastline=86]{PS01_NK.R}  
+	
+	\item Explanation: The correlation is upward then downward, seems like it is weak, which is non-linear. This is a scatter plot that shows the relationship between the Per Capita Expenditure on Shelters/Housing Assistance and Number of people per thousand residing in urban areas in state. Below is the plot:
+\end{description}
+\begin{figure}[h!]\centering
+	\caption{\footnotesize Y with X3:}
+	\label{fig:plot_3}
+	\includegraphics[width=.65\textwidth]{Y_X3.png}
+\end{figure}
+\newpage
+\begin{description}
+	\item Plot 4 - X1 with X2- Personal Income versus Number of Financially insecure residents:
+	\item Code in R:
+	\lstinputlisting[language=R, firstline=89, lastline=95]{PS01_NK.R}  
+	
+	\item Explanation: There seems to be no correlation between the Personal Income and Number of Financially insecure residents. Below is the scatter plot:
+\end{description}
+\begin{figure}[h!]\centering
+	\caption{\footnotesize X1 with X2:}
+	\label{fig:plot_4}
+	\includegraphics[width=.65\textwidth]{X1_X2.png}
+\end{figure}
+\newpage
+\begin{description}
+	\item Plot 5 - X1 with X3- Personal Income versus Number of people per thousand residing in urban areas in state:
+	\item Code in R:
+	\lstinputlisting[language=R, firstline=98, lastline=104]{PS01_NK.R}  
+	\item Explanation: The correlation between Personal Income and Number of people per thousand residing in urban areas in state seems to be upward and positive. Below is the scatter plot:
+\end{description}
+\begin{figure}[h!]\centering
+	\caption{\footnotesize X1 with X3:}
+	\label{fig:plot_5}
+	\includegraphics[width=.65\textwidth]{X1_X3.png}
+\end{figure}
+\newpage
+\begin{description}
+	\item Plot 6 - X2 with X3- Number of Financially insecure residents versus Number of people per thousand residing in urban areas in state:
+	\item Code in R:
+	\lstinputlisting[language=R, firstline=106, lastline=112]{PS01_NK.R}  
+	\item Explanation: There seems to be no correlation between the Number of Financially insecure residents and number of people per thousand residing in urban areas in state. Below is the scatter plot:
+\end{description}
+\begin{figure}[h!]\centering
+	\caption{\footnotesize X2 with X3:}
+	\label{fig:plot_6}
+	\includegraphics[width=.65\textwidth]{X2_X3.png}
+\end{figure}
+\newpage
+Part 2 - Average capita expenditure by region: 
+\begin{description}
+	\vspace{.5cm}
+	\item Y with Region - Average Per Capita Expenditure on Shelters/Housing Assistance by Region:
+	\vspace{.5cm}
+	\item Code in R:
+	\lstinputlisting[language=R, firstline=115, lastline=121]{PS01_NK.R}  
+	\vspace{.5cm}
+	\item Explanation: On average, the West region, region 4, has the highest per capita expenditure on housing assistance. I used the mean because you want to see the average per region and this function works on Y statistics. Below is the plot:
+	\begin{figure}[h!]\centering
+		\caption{\footnotesize X2 with X3:}
+		\label{fig:plot_7}
+		\includegraphics[width=.65\textwidth]{Y_Region.png}
+	\end{figure}
+\end{description}
+\newpage
+Part 3A - Y with X1 - Personal income versus sheler/housing expenditure assistance: 
+\begin{description}
+	\vspace{.5cm}
+	\item Code in R:
+	\lstinputlisting[language=R, firstline=124, lastline=129]{PS01_NK.R}  
+	\vspace{.5cm}
+	\item Explanation: Plotting the relationship between Y and X1. The correlation is downward then upwards, seems like it is weak, which is non-linear. This is a scatter plot that shows the relationship between the per Capita Expenditure on Shelters/Housing Assistance and Number of Financially Secure residents. It seems the relationship is not very strong. Below is the plot:
+	\begin{figure}[h!]\centering
+		\caption{\footnotesize Y with X1:}
+		\label{fig:plot_8}
+		\includegraphics[width=.65\textwidth]{Y_X1.png}
+	\end{figure}
+\end{description}
+\newpage
+Part 3B - Y with X1 and Region - Per Capita Expenditure on Shelters/Housing Assistance versus Personal Income by Region: 
+\begin{description}
+	\vspace{.5cm}
+	\item Code in R:
+	\lstinputlisting[language=R, firstline=130, lastline=135]{PS01_NK.R}  
+	\vspace{.5cm}
+	\item Explanation: This plot shows the relationship Per Capita Expenditure on Shelters/Housing Assistance versus Personal Income by Region. The regions are in different characters and shapes. Below is the plot:
+	\begin{figure}[h!]\centering
+		\caption{\footnotesize Y with X1 by Region:}
+		\label{fig:plot_9}
+		\includegraphics[width=.65\textwidth]{Y_X1_Region.png}
+	\end{figure}
+\end{description}
+\end{document}
